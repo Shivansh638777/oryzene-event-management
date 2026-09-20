@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Rajdhani } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
@@ -47,6 +48,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-2JC77G1C5V"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2JC77G1C5V');`}
+        </Script>
+      </head>
       <body className={`${inter.variable} ${rajdhani.variable}`}>
         <Navbar />
         {children}
