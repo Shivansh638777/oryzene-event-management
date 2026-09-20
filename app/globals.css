@@ -3,25 +3,42 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0d;
+  --panel: #16161a;
+  --line: #28282e;
+  --accent: #ff6a1f;
+  --gold: #f2b542;
+  --foreground: #f4f3ef;
+  --muted: #9a9aa4;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  min-width: 320px;
+}
+
+a { color: inherit; text-decoration: none; }
+::selection { color: var(--background); background: var(--gold); }
+
+@layer components {
+  .container-shell { @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10; }
+  .display-font { font-family: var(--font-rajdhani), sans-serif; }
+  .eyebrow { @apply display-font text-sm font-bold uppercase tracking-[0.2em] text-[#f2b542]; }
+  .section-title { @apply display-font text-4xl font-bold leading-[0.95] tracking-tight sm:text-5xl; }
+  .hairline { border: 1px solid var(--line); }
+  .button-primary { @apply inline-flex items-center justify-center rounded-xl bg-[#ff6a1f] px-5 py-3 display-font text-base font-bold text-[#0a0a0d] transition-colors hover:bg-[#f2b542] focus:outline-none focus:ring-2 focus:ring-[#f2b542] focus:ring-offset-2 focus:ring-offset-[#0a0a0d]; }
+  .button-secondary { @apply inline-flex items-center justify-center rounded-xl border border-[#28282e] px-5 py-3 display-font text-base font-bold text-[#f4f3ef] transition-colors hover:border-[#ff6a1f] hover:text-[#ff6a1f] focus:outline-none focus:ring-2 focus:ring-[#f2b542]; }
+  label { @apply display-font text-sm font-bold uppercase tracking-wider text-[#f4f3ef]; }
+  label input, label select, label textarea { @apply mt-2 w-full rounded-xl border border-[#28282e] bg-[#16161a] px-4 py-3 font-sans text-sm font-normal normal-case tracking-normal text-[#f4f3ef] outline-none transition-colors placeholder:text-[#62626b] focus:border-[#ff6a1f] focus:ring-1 focus:ring-[#ff6a1f]; }
+  label select { @apply appearance-none; }
+  label textarea { @apply resize-y; }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  .text-balance { text-wrap: balance; }
+  .hero-glow { background: radial-gradient(circle at 75% 10%, rgba(255, 106, 31, 0.2), transparent 35%), radial-gradient(circle at 15% 70%, rgba(242, 181, 66, 0.08), transparent 30%); }
 }

@@ -1,101 +1,23 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import Image from "next/image";
+import founderImage from "@/components/Screenshot 2026-09-20 213038.png";
+import { CityCard } from "@/components/CityCard";
+import { EventTypeCard } from "@/components/EventTypeCard";
+import { cities, siteUrl } from "@/lib/site";
+
+export const metadata: Metadata = { title: "Event Management in Kanpur, Lucknow & Gorakhpur", description: "Oryzene is an event management company in Kanpur creating weddings, corporate events, celebrations, esports and live shows across Uttar Pradesh." };
+const eventTypes = [["01", "Weddings", "A thoughtful, well-paced celebration that leaves room for the moments you actually want to remember."], ["02", "Corporate events", "Conferences, launches and team experiences with a clear purpose and a polished guest journey."], ["03", "Personal celebrations", "Birthdays, anniversaries and milestones designed around the people, not a template."], ["04", "Esports & gaming", "High-energy tournaments and community moments where production quality meets play."], ["05", "Live shows", "Concerts and cultural programs built from a sharp run of show and a calm backstage."]];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+  const jsonLd = { "@context": "https://schema.org", "@type": "EventPlanningBusiness", name: "Oryzene Event Management", url: siteUrl, email: "founder@oryzene.com", areaServed: cities.map(({ name }) => ({ "@type": "City", name, containedInPlace: "Uttar Pradesh, India" })), address: { "@type": "PostalAddress", addressLocality: "Kanpur", addressRegion: "Uttar Pradesh", addressCountry: "IN" } };
+  return <main>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    <section className="hero-glow border-b border-[#28282e]"><div className="container-shell grid min-h-[650px] items-end gap-12 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:py-28"><div><p className="eyebrow">Event management · Uttar Pradesh</p><h1 className="display-font mt-6 max-w-4xl text-6xl font-bold leading-[0.85] tracking-tight sm:text-8xl">We plan the event.<br /><span className="text-[#ff6a1f]">You enjoy it.</span></h1><p className="mt-8 max-w-xl text-lg leading-8 text-[#9a9aa4]">A hands-on event partner for weddings, work milestones and wildly good nights across Kanpur, Lucknow and Gorakhpur.</p><div className="mt-9 flex flex-wrap gap-3"><Link href="/contact" className="button-primary">Start planning <span className="ml-3">↗</span></Link><Link href="/services" className="button-secondary">See what we do</Link></div></div><div className="hairline rounded-xl bg-[#16161a]/70 p-6 sm:p-8"><div className="flex items-center justify-between border-b border-[#28282e] pb-5"><span className="eyebrow">The Oryzene brief</span><span className="text-[#ff6a1f]">●</span></div><p className="display-font mt-8 text-3xl font-bold leading-tight">Good planning is invisible on the day. Great planning is what lets you be fully there.</p><div className="mt-9 grid grid-cols-2 gap-4 text-sm text-[#9a9aa4]"><span><b className="display-font block text-2xl text-[#f4f3ef]">03</b>cities, one reliable team</span><span><b className="display-font block text-2xl text-[#f4f3ef]">01</b>clear point of contact</span></div></div></div></section>
+    <section className="container-shell py-20 sm:py-28"><div className="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p className="eyebrow">What we make happen</p><h2 className="section-title mt-4 max-w-xl">The right energy.<br />The right details.</h2></div><p className="max-w-md text-sm leading-7 text-[#9a9aa4]">From a first guest-list conversation to the final load-out, our team keeps the experience warm, the vendors aligned and the surprises intentional.</p></div><div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{eventTypes.map(([number, title, description]) => <EventTypeCard key={number} number={number} title={title} description={description} />)}</div></section>
+    <section className="border-y border-[#28282e] bg-[#16161a]"><div className="container-shell grid gap-12 py-20 sm:py-28 lg:grid-cols-[0.8fr_1.2fr]"><div><p className="eyebrow">Why Oryzene</p><h2 className="section-title mt-4">Local knowledge.<br />Serious follow-through.</h2></div><div className="grid gap-8 sm:grid-cols-2"><div><span className="display-font text-4xl font-bold text-[#ff6a1f]">01</span><h3 className="display-font mt-4 text-2xl font-bold">One calm lead</h3><p className="mt-3 text-sm leading-7 text-[#9a9aa4]">You get one accountable team that knows the brief, the budget and what cannot slip.</p></div><div><span className="display-font text-4xl font-bold text-[#ff6a1f]">02</span><h3 className="display-font mt-4 text-2xl font-bold">Vendors we trust</h3><p className="mt-3 text-sm leading-7 text-[#9a9aa4]">Our local network is built through repeat work, honest conversations and clean execution.</p></div><div><span className="display-font text-4xl font-bold text-[#ff6a1f]">03</span><h3 className="display-font mt-4 text-2xl font-bold">A plan guests feel</h3><p className="mt-3 text-sm leading-7 text-[#9a9aa4]">The best production disappears into a smooth welcome, a full dance floor and an easy goodbye.</p></div><div><span className="display-font text-4xl font-bold text-[#ff6a1f]">04</span><h3 className="display-font mt-4 text-2xl font-bold">Flexible by design</h3><p className="mt-3 text-sm leading-7 text-[#9a9aa4]">A smart plan can handle a weather shift, a late speaker or a guest list that grows.</p></div></div></div></section>
+    <section className="container-shell py-20 sm:py-28"><div className="hairline overflow-hidden rounded-xl bg-[#16161a]"><div className="grid gap-10 border-b border-[#28282e] p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:p-14"><div><p className="eyebrow">Founder highlight</p><h2 className="section-title mt-4">Meet Shivansh<br /><span className="text-[#ff6a1f]">Shukla.</span></h2><p className="mt-6 max-w-sm text-sm leading-7 text-[#9a9aa4]">Building Oryzene around the belief that events can create real community, not just attention.</p></div><div className="grid gap-5 sm:grid-cols-[minmax(150px,0.7fr)_1fr]"><div className="relative min-h-64 overflow-hidden rounded-xl border border-[#ff6a1f]/60 bg-[#0a0a0d]"><Image src={founderImage} alt="Shivansh Shukla, founder of Oryzene" fill className="object-cover object-top" sizes="(max-width: 640px) 100vw, 240px" /></div><div className="grid gap-5"><div className="rounded-xl border border-[#ff6a1f]/60 bg-[#0a0a0d] p-5"><p className="display-font text-4xl font-bold text-[#ff6a1f]">9+</p><p className="mt-2 text-sm leading-6 text-[#9a9aa4]">esports events led successfully</p></div><div className="rounded-xl border border-[#28282e] bg-[#0a0a0d] p-5"><p className="display-font text-2xl font-bold text-[#f2b542]">Tier 1</p><p className="mt-2 text-sm leading-6 text-[#9a9aa4]">experience with institutions including IIT Kanpur</p></div></div></div></div><div className="grid gap-4 p-7 sm:grid-cols-2 sm:p-10 lg:grid-cols-4 lg:p-14"><div><p className="eyebrow">01</p><h3 className="display-font mt-2 text-xl font-bold">Esports enthusiast</h3></div><div><p className="eyebrow">02</p><h3 className="display-font mt-2 text-xl font-bold">Event leader</h3></div><div><p className="eyebrow">03</p><h3 className="display-font mt-2 text-xl font-bold">Community builder</h3></div><div><p className="eyebrow">04</p><h3 className="display-font mt-2 text-xl font-bold">Visionary entrepreneur</h3></div></div></div></section>
+    <section className="container-shell py-20 sm:py-28"><div><p className="eyebrow">Where we work</p><h2 className="section-title mt-4">Close to the people<br />and places that matter.</h2></div><div className="mt-12 grid gap-4 md:grid-cols-3">{cities.map((city) => <CityCard key={city.name} {...city} />)}</div></section>
+    <section className="hero-glow border-t border-[#28282e]"><div className="container-shell flex flex-col items-start justify-between gap-8 py-20 sm:py-28 md:flex-row md:items-end"><div><p className="eyebrow">Have a date in mind?</p><h2 className="section-title mt-4 max-w-2xl">Let&apos;s make it<br /><span className="text-[#ff6a1f]">feel like yours.</span></h2></div><Link href="/contact" className="button-primary">Talk to our team <span className="ml-3">↗</span></Link></div></section>
+  </main>;
 }
