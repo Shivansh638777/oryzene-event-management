@@ -11,7 +11,8 @@ export function ContactForm() {
     if (!data.name || !data.email || !data.phone || !data.eventType || !data.city || !data.message) { setStatus("Please fill in every field so we can respond thoughtfully."); return; }
     setStatus("Sending your note...");
     const response = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
-    setStatus(response.ok ? "Thank you. We will be in touch shortly." : "Something went wrong. Please email oryzeneesports@gmail.com directly.");
+    const result = await response.json().catch(() => ({}));
+    setStatus(response.ok ? "Thank you. We will be in touch shortly." : result.error || "Something went wrong. Please email oryzeneesports@gmail.com directly.");
     if (response.ok) form.reset();
   }
   return <form onSubmit={submit} className="grid gap-5" noValidate>
